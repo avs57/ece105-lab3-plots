@@ -63,3 +63,64 @@ def plot_scatter(sensor_a, sensor_b, timestamps, ax):
     ax.set_title("Sensor Readings vs Time")
 
     ax.legend()
+
+def plot_histogram(sensor_a, sensor_b, ax):
+    """Create an overlaid histogram of sensor temperatures.
+
+    Parameters
+    ----------
+    sensor_a : numpy.ndarray
+        Sensor A readings.
+    sensor_b : numpy.ndarray
+        Sensor B readings.
+    ax : matplotlib.axes.Axes
+        Axes object to draw the plot on.
+
+    Returns
+    -------
+    None
+        Modifies the given Axes in place.
+    """
+    ax.hist(sensor_a, bins=30, alpha=0.5, label='Sensor A')
+    ax.hist(sensor_b, bins=30, alpha=0.5, label='Sensor B')
+
+    mean_a = np.mean(sensor_a)
+    mean_b = np.mean(sensor_b)
+
+    ax.axvline(mean_a, color='blue', linestyle='dashed', linewidth=2)
+    ax.axvline(mean_b, color='orange', linestyle='dashed', linewidth=2)
+
+    ax.set_xlabel("Temperature (°C)")
+    ax.set_ylabel("Frequency")
+    ax.set_title("Temperature Distribution of Sensors")
+
+    ax.legend()
+
+
+def plot_boxplot(sensor_a, sensor_b, ax):
+    """Create a side-by-side box plot for both sensors.
+
+    Parameters
+    ----------
+    sensor_a : numpy.ndarray
+        Sensor A readings.
+    sensor_b : numpy.ndarray
+        Sensor B readings.
+    ax : matplotlib.axes.Axes
+        Axes object to draw the plot on.
+
+    Returns
+    -------
+    None
+        Modifies the given Axes in place.
+    """
+    ax.boxplot([sensor_a, sensor_b], tick_labels=['Sensor A', 'Sensor B'])
+
+    overall_mean = np.mean(np.concatenate([sensor_a, sensor_b]))
+
+    ax.axhline(overall_mean, color='red', linestyle='dashed', linewidth=2, label='Overall Mean')
+
+    ax.set_ylabel("Temperature (°C)")
+    ax.set_title("Box Plot of Sensor Distributions")
+
+    ax.legend()
