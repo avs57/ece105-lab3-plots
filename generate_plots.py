@@ -35,3 +35,31 @@ def generate_data(seed):
     sensor_b = rng.normal(loc=27.0, scale=4.5, size=200)
     timestamps = rng.uniform(low=0.0, high=10.0, size=200)
     return sensor_a, sensor_b, timestamps
+
+def plot_scatter(sensor_a, sensor_b, timestamps, ax):
+    """Create a scatter plot of sensor readings vs time.
+
+    Parameters
+    ----------
+    sensor_a : numpy.ndarray
+        Sensor A readings.
+    sensor_b : numpy.ndarray
+        Sensor B readings.
+    timestamps : numpy.ndarray
+        Time values in seconds.
+    ax : matplotlib.axes.Axes
+        Axes object to draw the plot on.
+
+    Returns
+    -------
+    None
+        Modifies the given Axes in place.
+    """
+    ax.scatter(timestamps, sensor_a, color='blue', label='Sensor A')
+    ax.scatter(timestamps, sensor_b, color='orange', label='Sensor B')
+
+    ax.set_xlabel("Time (s)")
+    ax.set_ylabel("Temperature (°C)")
+    ax.set_title("Sensor Readings vs Time")
+
+    ax.legend()
