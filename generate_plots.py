@@ -124,3 +124,21 @@ def plot_boxplot(sensor_a, sensor_b, ax):
     ax.set_title("Box Plot of Sensor Distributions")
 
     ax.legend()
+
+def main():
+    """Generate sensor data, create plots, and save the figure."""
+    sensor_a, sensor_b, timestamps = generate_data(5140)  # replace with your last 4 digits
+
+    fig, axes = plt.subplots(2, 2, figsize=(10, 8))
+axes = axes.flatten()
+
+    plot_scatter(sensor_a, sensor_b, timestamps, axes[0])
+    plot_histogram(sensor_a, sensor_b, axes[1])
+    plot_boxplot(sensor_a, sensor_b, axes[2])
+
+    fig.tight_layout()
+    fig.savefig("sensor_analysis.png", dpi=150, bbox_inches="tight")
+
+
+if __name__ == "__main__":
+    main()
