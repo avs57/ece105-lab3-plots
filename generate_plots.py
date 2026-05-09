@@ -130,7 +130,7 @@ def main():
     sensor_a, sensor_b, timestamps = generate_data(5140)  # replace with your last 4 digits
 
     fig, axes = plt.subplots(2, 2, figsize=(10, 8))
-axes = axes.flatten()
+    axes = axes.flatten()
 
     plot_scatter(sensor_a, sensor_b, timestamps, axes[0])
     plot_histogram(sensor_a, sensor_b, axes[1])
